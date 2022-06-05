@@ -20,7 +20,7 @@ public class ClienteDao implements IObjDao<Cliente> {
 
 	@Override
 	public void insere(Cliente cli) {
-		EntityManager entityManager = sf.createEntityManager();
+		EntityManager entityManager = (EntityManager) sf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.persist(cli);
@@ -29,7 +29,7 @@ public class ClienteDao implements IObjDao<Cliente> {
 
 	@Override
 	public void modifica(Cliente cli) {
-		EntityManager entityManager = sf.createEntityManager();
+		EntityManager entityManager = (EntityManager) sf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.merge(cli);
@@ -38,7 +38,7 @@ public class ClienteDao implements IObjDao<Cliente> {
 
 	@Override
 	public void remove(Cliente cli) {
-		EntityManager entityManager = sf.createEntityManager();
+		EntityManager entityManager = (EntityManager) sf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.remove(cli);
@@ -47,7 +47,7 @@ public class ClienteDao implements IObjDao<Cliente> {
 
 	@Override
 	public Cliente busca(Cliente cli) {
-		EntityManager entityManager = sf.createEntityManager();
+		EntityManager entityManager = (EntityManager) sf.createEntityManager();
 		cli = entityManager.find(Cliente.class, cli.getCpf());
 		return cli;
 	}
@@ -61,7 +61,7 @@ public class ClienteDao implements IObjDao<Cliente> {
 		buffer.append("pronome_tratamento ");
 		buffer.append("FROM cliente ");
 		buffer.append("ORDER BY nome_cliente");
-		EntityManager entityManager = sf.createEntityManager();
+		EntityManager entityManager = (EntityManager) sf.createEntityManager();
 		Query query = entityManager.createNativeQuery(buffer.toString());
 		List<Object[]> lista = query.getResultList();
 		for (Object[] obj : lista) {

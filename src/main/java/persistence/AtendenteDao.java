@@ -18,7 +18,7 @@ public class AtendenteDao implements IObjDao<Atendente>{
 
 	@Override
 	public void insere(Atendente at) {
-		EntityManager entityManager = sf.createEntityManager();
+		EntityManager entityManager = (EntityManager) sf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.persist(at);
